@@ -1,0 +1,10 @@
+.expand-more {
+    border: none;
+    outline: none;
+    background-color: #fff;
+}
+
+.expand-more:focus {
+    border: 0;
+    outline: none;
+}

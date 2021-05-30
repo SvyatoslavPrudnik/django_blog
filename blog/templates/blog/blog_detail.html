@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Blog {{ blog.title }}
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-4 col-6">
+        <div class="detail-base text-center">
+            <h1>{{ blog.title }}</h1>
+              <div class="collapse" id="detailInfo">
+                <div class="card card-body">
+                    <h5>{{ blog.get_blog_topic_display }}</h5>
+                    <p>{{ blog.description }}</p>
+                </div>
+              </div>
+              <button href="javascript:void();" id="expand" class="expand-more" data-toggle="collapse" data-target="#detailInfo" aria-expanded="false" aria-controls="detailInfo">
+                <span id="readmore" class="material-icons">
+                    expand_more
+                </span>
+            </button>
+            <div class="posts">
+                <h3>Recent posts</h3>
+                {% for post in posts %}
+                    <div class="card text-center my-4">
+                        <div class="card-header text-white" style='background-color: #286da8;'>
+                            <!-- {{ post.title }} -->
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <p class="card-text">{{ post.body|truncatewords:20 }}</p>
+                            <a href="#" class="btn btn-primary" style='background-color: #286da8;'>Read</a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            {{ post.create_time }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(".material-icons").on('click', function(){
+            $(this).parent().toggleClass("showContent");
+            //$('#readmore').text('expand_less');
+
+            var replaceText = $(this).parent().hasClass("showContent") ? "expand_less" : "expand_more"
+            $(this).text(replaceText)
+        })
+    </script>
+{% endblock %}
