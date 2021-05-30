@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Blogs
+{% endblock %}
+
+{% block content %}
+    {% for blog in blogs %}
+        <div class="container col-6 my-3">
+            <div class="card text-center">
+                <div class="card-header text-white" style='background-color: #286da8;'>
+                    <a href="#">
+                        <div class="link" style='color: white;'>
+                            {{ blog.title }}
+                         </div>
+                    </a>
+                </div>
+                <div class="card-body">
+                <p class="card-title"><strong>{{ blog.get_blog_topic_display }}</strong></>
+                <p class="card-text">{{ blog.description }}</p>
+                <!-- <a href="#" class="btn btn-primary">Open</a> -->
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
